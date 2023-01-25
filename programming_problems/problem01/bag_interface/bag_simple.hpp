@@ -3,7 +3,7 @@
 
 #include "abstract_bag.hpp"
 
-template<typename T> class Bag : public AbstractBag{
+template<typename T> class Bag {
 public:
 
   Bag();
@@ -29,7 +29,6 @@ public:
 private:
   // implementation using fixed automatic storage
   std::size_t size;
-  
   T data[MAXSIZE];
 };
 

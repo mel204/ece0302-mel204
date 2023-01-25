@@ -2,7 +2,7 @@
 #define _ABSTRACT_BAG_HPP_
 
 #include <cstdlib>
-//TODO
+
 template<typename T>class AbstractBag
 {
 
