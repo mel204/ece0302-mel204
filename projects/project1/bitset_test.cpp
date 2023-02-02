@@ -30,6 +30,7 @@ TEST_CASE( "Test bitset construction string", "[bitset]" ) {
     REQUIRE(b.size() == s.size());
     REQUIRE(b.good());
     REQUIRE(b.asString().compare(s) == 0);
+    std:: cout<< b.asString() << std::endl;
 }
 
 TEST_CASE( "Test bitset construction invalid string", "[bitset]" ) {

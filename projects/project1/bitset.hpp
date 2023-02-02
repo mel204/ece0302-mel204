@@ -26,7 +26,7 @@ public:
   intmax_t size() const;
 
   // check if its valid or not
-  bool good();
+  bool good() const;
 
   // set the index of the bit vector to 1
   void set(intmax_t index);
@@ -34,7 +34,7 @@ public:
   // set the index of the bit vector to 0
   void reset(intmax_t index);
 
-  // TODO COMMENT
+  // toggle the selected bit
   void toggle(intmax_t index);
 
   // TODO COMMENT
@@ -48,13 +48,15 @@ private:
   // TODO
   // private member to store bitset in an array by a pointer
 
-//what type should this be?
-  uint8_t *bitVector;
+  uint8_t *bitVector = nullptr;
 
-//private member variable to check if bitset is valid
+  // vector size
 
-  bool valid;
+  intmax_t bitSize;
 
+  //private member variable to check if bitset is valid
+
+  bool valid = true;
 
 };
 

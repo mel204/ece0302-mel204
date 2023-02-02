@@ -1,14 +1,14 @@
 #include "dynamic_bag.hpp"
 
 template<typename T>
-DynamicBag<T>::DynamicBag() {}
+DynamicBag<T>::DynamicBag() { bag = new T[bagSize]; }
   
 
 template<typename T>
-DynamicBag<T>::DynamicBag(const DynamicBag& x){}
+DynamicBag<T>::DynamicBag(const DynamicBag & x){ }
     
 template<typename T>
-DynamicBag<T>::~DynamicBag(){}
+DynamicBag<T>::~DynamicBag() { delete [] bag; }
   
 template<typename T>
 DynamicBag<T>& DynamicBag<T>::operator=(DynamicBag<T> x)
@@ -22,6 +22,8 @@ void DynamicBag<T>::swap(DynamicBag<T>& x){}
 template<typename T>
 bool DynamicBag<T>::add(const T& item)
 {
+
+
   return false;
 }
 
@@ -40,7 +42,7 @@ bool DynamicBag<T>::isEmpty() const
 template<typename T>
 std::size_t DynamicBag<T>::getCurrentSize() const
 {
-  return 0;
+  return bagSize;
 }
 
 template<typename T>

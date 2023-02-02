@@ -6,6 +6,16 @@
 // force template expansion for ints
 template class DynamicBag<int>;
 
+// test constructors
+
+TEST_CASE("test constructors", "[DynamicBag]"){
+  DynamicBag<int> b;
+
+  REQUIRE(b.getCurrentSize() == 0);
+  REQUIRE(b.isEmpty());
+  
+}
+
 TEST_CASE("Calling all public members", "[DynamicBag]"){
   DynamicBag<int> b;
 

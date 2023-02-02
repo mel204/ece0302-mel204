@@ -46,6 +46,15 @@ public:
 private:
 
   // TODO
+
+  // private member for bag size
+
+  size_t bagSize = 0;
+
+  // private member to store bag items
+
+  T *bag = nullptr;
+
 };
 
 #include "dynamic_bag.tpp"

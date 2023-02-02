@@ -28,6 +28,7 @@ public:
 
   // check if item is in the bag
   virtual bool contains(const T& item) const = 0;
+  
 };
 
 #endif

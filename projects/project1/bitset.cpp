@@ -4,8 +4,14 @@ Bitset::Bitset() {
     // TODO
     // construct a bitset of size 8 initialized to 0
 
+    bitSize = 8;
+
+    // allocate memory for the bitVector
+
+    bitVector = new uint8_t [bitSize];
+
     for (int i = 0; i < 8; i++)
-     {*(bitVector + i) = 0;}   
+     {bitVector[i] = 0;}   
 
 }
 
@@ -13,32 +19,52 @@ Bitset::Bitset(intmax_t size) {
     // TODO
     //construct a bitset of size N initialized to 0
 
-    if (size < 0) { valid = false; }
+    bitSize = size;
 
-    for (int i = 0; i < size; i++)
+    // allocate memory for the bitVector
+
+    bitVector = new uint8_t [bitSize];
+
+    if (bitSize <= 0) { valid = false; }
+
+    for (int i = 0; i < bitSize - 1; i++)
      {bitVector[i] = 0;} 
 }
 
-Bitset::Bitset(const std::string & value) {
+Bitset::Bitset(const std::string & value) 
+{
     // TODO
-    // for (int i = 0; i < size(); i++)
-    //{ *(bitVector + i) = dynamic_cast< Bitset * >(value); }
 
-    int strSize = value.length();
+    bitSize = value.length();
 
-    for (int i = 0; i < strSize; i++)
+    bitVector = new uint8_t [bitSize];
+    
+    // initialize valid to true
+
+    valid = true;
+
+    for (int i = 0; i < bitSize ; i++)
     {
-        uint8_t temp;
-        temp = static_cast<uint8_t>(value[i]);
-        bitVector[i] = temp;
+        if (value.at(i) == '0')
+        { bitVector[i] = 0; }
+        else if (value.at(i) == '1')
+        { bitVector[i] = 1; }
+        else
+        { valid = false; }
     }
 
-    //how do you convert from string to bit vector?
+
 }
 
 std::string Bitset::asString() const
 {
-    return "";
+    std::string temp = "";
+    for (int i = 0 ; i < bitSize ; i++)
+    {
+        temp.append(std::to_string(bitVector[i]));
+    }
+
+    return temp;
 }
 
 Bitset::~Bitset() { 
@@ -50,28 +76,18 @@ Bitset::~Bitset() {
 
 intmax_t Bitset::size() const
 {
-    intmax_t vectorSize = sizeof(bitVector)/sizeof(bitVector[0]);
-    return vectorSize;
+    return bitSize;
 }
 
-bool Bitset::good() 
+bool Bitset::good() const
 {
-    for (int i = 0; i < size(); i++)
-    {
-        
-        if (bitVector[i] == 0 || bitVector[i] == 1)
-            { valid = true; }
-        else
-            { valid = false;
-            break;}
-    }
     return valid;
 }
 
 
 void Bitset::set(intmax_t index)
 {
-    if (index < 0 || index > size() - 1)
+    if (index < 0 || index >= bitSize)
     { valid = false; } 
     else 
     { bitVector[index] = 1; }
@@ -81,7 +97,7 @@ void Bitset::set(intmax_t index)
 
 void Bitset::reset(intmax_t index)
 {
-    if (index < 0 || index > size() - 1)
+    if (index < 0 || index >= bitSize)
     { valid = false; } 
     else 
     { bitVector[index] = 0; }
@@ -90,7 +106,7 @@ void Bitset::reset(intmax_t index)
 
 void Bitset::toggle(intmax_t index)
 {
-    if (index < 0 || index > size() - 1)
+    if (index < 0 || index >= bitSize)
     { valid = false; } 
     else if (bitVector[index] == 0) 
     { bitVector[index] = 1; }
@@ -101,8 +117,8 @@ void Bitset::toggle(intmax_t index)
 
 bool Bitset::test(intmax_t index)
 {
-    if (index < 0 || index > size() - 1)
-    { valid = false; return false;} 
+    if (index < 0 || index >= bitSize)
+    { valid = false; return false; } 
     else
     {
         if (bitVector[index] == 1)
