@@ -11,7 +11,7 @@ public:
   DynamicBag();
   
   // copy constructor
-  DynamicBag(const DynamicBag& x);
+  DynamicBag(const DynamicBag & x);
     
   // destructor
   ~DynamicBag();

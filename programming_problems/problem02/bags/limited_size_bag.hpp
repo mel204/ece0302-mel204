@@ -9,6 +9,9 @@ class LimitedSizeBag: public AbstractBag<T>
 public:
   // default constructor
   LimitedSizeBag();
+
+  // destructor
+  ~LimitedSizeBag();
   
   // add an item to the bag
   bool add(const T & item);
@@ -31,9 +34,23 @@ public:
   // check if item is in the bag
   bool contains(const T& item) const;
 
+  // size limiting variable
+
+  static const std::size_t maxsize = 100;
+
 private:
 
   // TODO
+
+    // private member for bag size
+
+    size_t bagSize = 0;
+
+    // private member to store bag items
+
+    T *bag = nullptr;
+
+  
 };
 
 #include "limited_size_bag.tpp"
