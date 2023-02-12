@@ -47,6 +47,13 @@ public:
 private:
 
   // TODO
+
+  //private member to store array size
+  std::size_t listSize;
+
+  //array to store data
+  T *list;
+
   
 };
 

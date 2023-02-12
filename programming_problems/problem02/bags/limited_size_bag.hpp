@@ -10,8 +10,6 @@ public:
   // default constructor
   LimitedSizeBag();
 
-  // destructor
-  ~LimitedSizeBag();
   
   // add an item to the bag
   bool add(const T & item);

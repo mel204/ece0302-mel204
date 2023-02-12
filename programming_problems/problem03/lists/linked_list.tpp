@@ -4,18 +4,22 @@ template <typename T>
 LinkedList<T>::LinkedList()
 {
   //TODO
+  listSize = 0;
+  list = new T[listSize];
 }
 
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
   //TODO
+  delete [] list;
 }
 
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
   //TODO
+  
 }
 
 template <typename T>

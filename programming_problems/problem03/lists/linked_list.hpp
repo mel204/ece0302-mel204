@@ -47,6 +47,12 @@ public:
 private:
 
   //TODO
+
+  //private member to store size
+  size_t listSize;
+
+  //pointer to store data
+  T *list;
   
 };
 

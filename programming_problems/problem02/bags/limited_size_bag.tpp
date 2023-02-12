@@ -3,8 +3,7 @@
 template<typename T>
 LimitedSizeBag<T>::LimitedSizeBag() {bag = new T[bagSize];}
 
-template<typename T>
-LimitedSizeBag<T>::~LimitedSizeBag() { delete [] bag; }
+
   
 template<typename T>
 bool LimitedSizeBag<T>::add(const T& item)
