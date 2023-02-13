@@ -3,7 +3,7 @@
 // Constructor/Destructor
 
 template <typename T>
-ArrayList<T>::ArrayList() {listSize = 0; }
+ArrayList<T>::ArrayList() { listSize = 0; list = new T[listSize]; }
 
 template <typename T>
 ArrayList<T>::~ArrayList() {delete [] list; }

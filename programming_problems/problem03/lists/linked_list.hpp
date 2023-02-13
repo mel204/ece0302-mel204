@@ -47,9 +47,10 @@ public:
 private:
 
   //TODO
+  Node<T> *headPtr;
 
   //private member to store size
-  size_t listSize;
+  std::size_t listSize;
 
   //pointer to store data
   T *list;
