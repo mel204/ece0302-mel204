@@ -52,8 +52,8 @@ private:
   //private member to store size
   std::size_t listSize;
 
-  //pointer to store data
-  T *list;
+  //additional object pointer needed for remove function
+ // Node<T>* getPointerTo(const T& target) const;
   
 };
 

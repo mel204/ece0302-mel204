@@ -14,20 +14,19 @@ template <typename T>
 LinkedList<T>::~LinkedList()
 {
   //TODO
-  delete [] headPtr;
+  clear();
 }
 
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
   //TODO
-  listSize = x.getLength();
+  listSize = x.listSize;
 
-  
-
+  //use insert to initialize list
   for (int i = 0; i < listSize; i++)
   {
-    insert(i, x.getEntry(i))
+    insert(i, x.getEntry(i));
   }
 
 }
@@ -35,24 +34,7 @@ LinkedList<T>::LinkedList(const LinkedList<T>& x)
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> x)
 {
-  //TODO
-    if (this != &x)
-  {
-    delete [] list;
 
-    //delete previously stored data in the array
-    //make sizes equal
-
-    if (listSize != x.listSize)
-    { listSize = x.listSize; }
-
-    for (int i = 0; i < listSize; i++)
-    {
-      list[i] = x.list[i];
-    }
-
-  }
-  return *this;
 }
 
 template <typename T>
@@ -60,23 +42,6 @@ void LinkedList<T>::swap(LinkedList& x)
 {
   //TODO
 
-  T *temp; //temp variable to hold the paramater
-  for (int i = 0; i < listSize; i++)
-  {
-    temp[i] = rhs.list[i]; // set the input equal to temp
-  }
-
-  for (int i = 0; i < listSize; i++)
-  {
-    rhs.list[i] = list[i]; // move the bag to the input.
-  }
-
-  for (int i = 0; i < listSize; i++)
-  {
-    list[i] = temp[i]; // move the input to the bag
-  }
-
-  delete [] temp;
 }
 
 template <typename T>
@@ -103,7 +68,7 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
 
   headPtr = newNodePtr;
 
-  listSize++
+  listSize++;
 
   return true;
 }
@@ -112,6 +77,10 @@ template <typename T>
 bool LinkedList<T>::remove(std::size_t position)
 {
   //TODO
+  Node<T> * entryNodePtr = getPointerTo(anEntry);
+  bool canRemove = !isEmpty() && (entryNodePtr != nullptr);
+
+
   return true;
 }
 

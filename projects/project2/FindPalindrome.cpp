@@ -84,6 +84,14 @@ bool FindPalindrome::cutTest2(const vector<string> & stringVector1,
 bool FindPalindrome::add(const string & value)
 {
 	// TODO need to implement this...
+	for (int i = 0; i < value.length(); i++)
+	{
+		if ((value.at(i) >= 65 && value.at(i) <= 90) || (value.at(i) >= 97 && value.at(i) <= 122))
+		{
+			palindrome[i] = value;
+		}
+	}
+
 	return false;
 }
 
