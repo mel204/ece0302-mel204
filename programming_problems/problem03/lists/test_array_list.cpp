@@ -11,6 +11,7 @@ TEST_CASE( "Test Constructors;", "[ArrayList]" ) {
   ArrayList<int> list;
   REQUIRE(list.isEmpty());
   REQUIRE(list.getLength() == 0);
+  
 }
 
 TEST_CASE( "Test overloaded operator", "[ArrayList]" ) {
@@ -34,6 +35,7 @@ TEST_CASE( "Test Insert", "[ArrayList]" )
   REQUIRE(list.insert(0,1));
   REQUIRE(list.insert(1,2));
   REQUIRE(list.insert(2,3));
+  REQUIRE(list.getEntry(0) == 1);
 
 }
 

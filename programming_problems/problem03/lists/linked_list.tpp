@@ -31,11 +31,11 @@ LinkedList<T>::LinkedList(const LinkedList<T>& x)
 
 }
 
-template <typename T>
-LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> x)
-{
+//template <typename T>
+//LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> x)
+//{
 
-}
+//}
 
 template <typename T>
 void LinkedList<T>::swap(LinkedList& x) 
@@ -77,8 +77,6 @@ template <typename T>
 bool LinkedList<T>::remove(std::size_t position)
 {
   //TODO
-  Node<T> * entryNodePtr = getPointerTo(anEntry);
-  bool canRemove = !isEmpty() && (entryNodePtr != nullptr);
 
 
   return true;

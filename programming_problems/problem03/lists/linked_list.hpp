@@ -19,7 +19,7 @@ public:
   ~LinkedList();
   
   // copy assignment
-  LinkedList& operator=(LinkedList x);
+  //LinkedList& operator=(LinkedList x);
 
   void swap(LinkedList& x);
   

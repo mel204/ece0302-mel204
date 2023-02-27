@@ -11,7 +11,14 @@ private:
 	
 	// vector of strings to store palindrome
 
-	std::vector<string> palindrome;
+	std::vector<std::string> palindrome;
+
+	// vector of vectors to hold the combinations that are palindromes
+
+	std::vector< std::vector<std::string> > solutions;
+
+	// variable to store number of palindromes
+	int numPal;
 
 	// ...
 	

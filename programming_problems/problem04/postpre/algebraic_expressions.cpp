@@ -45,34 +45,26 @@ void convert(string &postfix, string &prefix) {
   // TODO
   // length of post string
   size_t postLength = postfix.length();
-
-  std::stack<string> s;
- 
- for (int i = 0; i < postLength; i++)
   
-  if (isoperator(postfix[i]))
+  if (!isoperator(postfix[postLength - 1])) // check if last char is an operator
   {
-    //pop two operands
-    std::string op1 = s.top();
-    s.pop();
-    std::string op2 = s.top();
-    s.pop();
-
-    std::string temp = postfix[i] + op1 + op2;
-
-    //push string back to stack
-
-    s.push(temp);
-
+    prefix = postfix[postLength - 1] + prefix; // if it is not an operator add the number to the front
   } else
   {
-    s.push(string(1, postfix[i]));
-  }
+    char op = postfix[postLength - 1]; // char to store the operand 
 
-  while (!s.empty())
-  {
-    prefix += s.top();
-    s.pop();
+    if (!postfix.empty())
+      postfix.pop_back(); // pop the operand from postfix
+
+    convert(postfix, prefix); // recursive call to check the next number
+
+
+    if (!postfix.empty())
+      postfix.pop_back(); // pop a second time to account for two operators in a row
+
+    convert(postfix, prefix); // recursive call to check for any more items in the string
+
+    prefix = op + prefix; // add the operand to make it prefix
   }
 
 }
