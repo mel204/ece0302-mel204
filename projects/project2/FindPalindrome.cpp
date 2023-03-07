@@ -38,12 +38,13 @@ std::string sentenceToString(string & value)
 
 std::string vectorToString(std::vector<std::string> stringVector)
 {
-	std::string longString;
+	std::string longString = "";
 
 	for (int i = 0; i < stringVector.size(); i++)
 	{
-		sentenceToString(stringVector[i]);
-		longString += stringVector[i];
+		std::string thisString = stringVector.at(i);
+		convertToLowerCase(thisString);
+		longString += thisString;
 	}
 
 
@@ -56,7 +57,8 @@ std::string vectorToString(std::vector<std::string> stringVector)
 void FindPalindrome::recursiveFindPalindromes(vector<string>
         candidateStringVector, vector<string> currentStringVector)
 {
-	if (currentStringVector.size() == 0)
+	if(!cutTest2(candidateStringVector, currentStringVector)){}
+	else if (currentStringVector.size() == 0)
 	{
 		// convert vector to string
 		std::string temp = vectorToString(candidateStringVector);
@@ -64,7 +66,7 @@ void FindPalindrome::recursiveFindPalindromes(vector<string>
 		// check for palindrome
 		if (isPalindrome(temp))
 		{
-			numPal += 1;
+			numPal++;
 			solutions.push_back(candidateStringVector);
 		}
 
@@ -82,17 +84,13 @@ void FindPalindrome::recursiveFindPalindromes(vector<string>
 			std::vector<std::string> tempCurrent = currentStringVector;
 
 			// move first string to candidate vector
-			tempCandidate.push_back(tempCurrent[i]);
+			tempCandidate.push_back(tempCurrent.at(i));
 
 			// remove string moved to candidate
-			tempCurrent.erase(tempCurrent.begin() + 1);
+			tempCurrent.erase(tempCurrent.begin() + i);
 			
-
-			if(cutTest2(tempCandidate, tempCurrent))
-			{
-				// if it passes cutTest2 then recursively call the function
-				recursiveFindPalindromes(tempCandidate, tempCurrent);
-			}
+			recursiveFindPalindromes(tempCandidate, tempCurrent);
+			
 		}
 
 	}
@@ -251,15 +249,31 @@ bool FindPalindrome::cutTest2(const vector<string> & stringVector1,
 bool FindPalindrome::add(const string & value)
 {
 	//variable to check if parameter is valid
-	bool valid = false;
+	bool valid = true;
+
+	//temp string
+
+	std::string str = "";
 
 	// TODO need to implement this...
 	for (int i = 0; i < value.length(); i++)
 	{
 		if ((value.at(i) >= 65 && value.at(i) <= 90) || (value.at(i) >= 97 && value.at(i) <= 122))
 		{
-			valid = true;
+			str += char(value.at(i));
 		} else
+		{
+			return false;
+		}
+	}
+
+	//check for duplicates
+
+	for (int i = 0; i < palindrome.size(); i++)
+	{
+		std::string str2 = palindrome.at(i);
+		convertToLowerCase(str2);
+		if(str == str2)
 		{
 			return false;
 		}
@@ -271,6 +285,9 @@ bool FindPalindrome::add(const string & value)
 	{ palindrome.push_back(value); }
 
 	// check to see if palindrome string vector is a palindrome every time a string is added
+
+	palindrome.clear();
+	numPal = 0;
 
 	if (cutTest1(palindrome))
 	{			
@@ -287,41 +304,83 @@ bool FindPalindrome::add(const vector<string> & stringVector)
 	// test for existing duplicates
 	// test whether a word already exists in teh bag
 	// if the vector of strings is valid, add to the vector (push_back())
-	// 
 
 
 
 	//variable to check if parameter is valid
-	bool valid = false;
+	bool valid = true;
 	//variable to store vector as string
 	std::string value = vectorToString(stringVector);
 
 	// TODO need to implement this...
+
+	// validate characters
 	for (int i = 0; i < stringVector.size(); i++)
 	{
-		if ((value.at(i) >= 65 && value.at(i) <= 90) || (value.at(i) >= 97 && value.at(i) <= 122))
-		{
-			valid = true;
-		} else
+		if (value.at(i) < 'a' || value.at(i) > 'z')
 		{
 			return false;
 		}
 	}
+
+	// check for duplicates
+
+	for (int i = 0; i < stringVector.size(); i++)
+	{
+		for (int j = 0; j < stringVector.size(); j++)
+		{
+			std::string s1 = stringVector[i];
+			std::string s2 = stringVector[j];
+
+			convertToLowerCase(s1);
+			convertToLowerCase(s2);
+
+			if(s1 == s2)
+			{
+				return false;
+			}
+
+		}
+	}
+
+	for (int i = 0; i < palindrome.size(); i++)
+	{
+		for (int j = 0; j < stringVector.size(); j++)
+		{
+			std::string s1 = palindrome[i];
+			std::string s2 = palindrome[j];
+
+			convertToLowerCase(s1);
+			convertToLowerCase(s2);
+
+
+			if(s1 == s2)
+			{
+				return false;
+			}
+		}
+	}
+
+	palindrome.clear();
+	numPal = 0;
+
+
 	// if all letters are valid, make string vector equal to palindrome
 
 	if(valid)
 	{ 
 		for (int i = 0; i < stringVector.size(); i++)
 		{
-			palindrome[i] = stringVector[i];
+			palindrome.push_back(stringVector.at(i));
 		}
 	}
 
 	// check to see if palindrome string vector is a palindrome every time a vector is added
 
+	std::vector<std::string> tempStringVector;
+
 	if (cutTest1(palindrome))
 	{
-		std::vector<std::string> tempStringVector;
 		recursiveFindPalindromes(tempStringVector, palindrome);
 	}
 
