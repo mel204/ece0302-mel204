@@ -42,6 +42,39 @@ TEST_CASE( "Test Stack push and size", "[ADT Stack]" )
 		}
 }
 
+TEST_CASE( "Test pop peek and clear", "[ADT Stack]" )
+{
+		INFO("Hint: testing stack pop");
+		// stack to hold ints
+		Stack<int> intStack;
+		int testSize = 3;
+		int stackSize;
+		bool success;
+		for (int i = 0; i < testSize; i++)
+		{
+			intStack.push(i);
+			stackSize = intStack.size();
+		}
+
+		for (int i = testSize; i > 0; i--)
+		{
+			success = intStack.pop();
+			REQUIRE(success);
+			stackSize = intStack.size();
+			success = (stackSize == (i - 1));
+			REQUIRE(success);
+		}
+
+		INFO("Hint: testing stack peek");
+		intStack.push(1);
+		intStack.push(2);
+		REQUIRE(intStack.peek() == 2);
+
+		INFO("Hint: testing stack clear");
+		intStack.clear();
+		REQUIRE(intStack.isEmpty());
+}
+
 TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 {
 	   INFO("Hint: tokenize single element test of XMLParse");
