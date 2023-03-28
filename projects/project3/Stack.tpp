@@ -13,6 +13,7 @@ template<class ItemType>
 Stack<ItemType>::Stack() 
 {
 	headPtr = nullptr;
+	currentSize = 0;
 }  // end default constructor
 
 // TODO: Implement the destructor here

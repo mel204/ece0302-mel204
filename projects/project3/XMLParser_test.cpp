@@ -31,7 +31,7 @@ TEST_CASE( "Test Stack push and size", "[ADT Stack]" )
 		// Create a Stack to hold ints
 		Stack<int> intStack;
 		int testSize = 3;
-		int stackSize;
+		int stackSize = 0;
 		bool success;
 		for (int i=0; i<testSize; i++) {
 			success = intStack.push(i);

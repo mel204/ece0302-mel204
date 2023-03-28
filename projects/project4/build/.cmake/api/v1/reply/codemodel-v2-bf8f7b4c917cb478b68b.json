@@ -1,0 +1,124 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						3,
+						5
+					]
+				},
+				{
+					"build" : "lib",
+					"jsonFile" : "directory-lib-Debug-c12f15c6f888b43a891c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib",
+					"targetIndexes" : 
+					[
+						1,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "P4",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "compare::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-compare-Debug-c3345925d4de901d2ca8.json",
+					"name" : "compare",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "image::@306ed2d68c6501e8728f",
+					"jsonFile" : "target-image-Debug-9ab0c69961ec554668dc.json",
+					"name" : "image",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pathfinder::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pathfinder-Debug-5c8b58c0dab7f6195b7c.json",
+					"name" : "pathfinder",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "submission::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-submission-Debug-61aa85cb0d04514f92c4.json",
+					"name" : "submission",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "test-image::@306ed2d68c6501e8728f",
+					"jsonFile" : "target-test-image-Debug-f5721a08dd76752d933b.json",
+					"name" : "test-image",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-queue::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-queue-Debug-29db30833bc16979c8b6.json",
+					"name" : "test-queue",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/maxludwig/Documents/GitHub/ece0302-mel204/projects/project4/build",
+		"source" : "/Users/maxludwig/Documents/GitHub/ece0302-mel204/projects/project4"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

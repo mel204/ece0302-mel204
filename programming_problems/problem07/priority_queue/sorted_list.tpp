@@ -41,12 +41,42 @@ template <typename T, typename L>
 void SortedList<T, L>::insert(const T& item)
 {
   // TODO
+  // bool to check if inserted
+  bool success = false;
+  int i = 0;
+  // while its not inserted
+  while(!success)
+  {
+    if ( i == getLength())
+    {
+      plist.insert(i, item);
+      success = true;
+    }
+    if ( item < getEntry(i))
+    {
+      plist.insert(i, item);
+      success = true;
+    }
+
+    i++;
+  }
 }
 
 template <typename T, typename L>
 void SortedList<T, L>::remove(const T& item)
 {
   // TODO
+  if(isEmpty()) throw (std::range_error("empty list in remove"));
+  // TODO
+  // iterate to find position using linked list getEntry
+  int position = getPosition(item);
+
+  for(int i = 0; i < plist.getLength(); i++)
+  {
+    if(item == plist.getEntry(i))
+      plist.remove(position);
+  }
+
 }
 
 template <typename T, typename L>
@@ -71,5 +101,14 @@ template <typename T, typename L>
 long int SortedList<T, L>::getPosition(const T& newValue)
 {
   // TODO
-  return 0;
+  
+  for (int i = 0; i < plist.getLength(); i++)
+  {
+    if(newValue == plist.getEntry(i))
+    {
+      return i;
+    }
+  }
+
+  return -1;
 }

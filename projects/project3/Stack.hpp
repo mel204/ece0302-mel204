@@ -15,7 +15,7 @@ class Stack
 {
 private:
 	Node<ItemType>* headPtr; // Pointer to first node
-	int currentSize;         // Current depth of the stack
+	int currentSize = 0;         // Current depth of the stack
 
 public:
 	/** Stack constructor */

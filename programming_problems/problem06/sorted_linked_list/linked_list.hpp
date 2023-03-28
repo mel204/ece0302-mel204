@@ -48,6 +48,15 @@ public:
 private:
 
   //TODO
+
+  //pointer to first node
+  Node<T> *headPtr;
+
+  //number of list items  
+  std::size_t itemCount;
+
+  //get node at position
+  Node<T>* getNodeAt(int position) const;
   
 };
 

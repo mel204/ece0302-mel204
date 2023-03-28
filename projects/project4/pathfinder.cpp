@@ -22,6 +22,8 @@ int main(int argc, char *argv[])
 
   // TODO
 
+  
+
   // Write solution image to file
   writeToFile(image, output_file);
   
