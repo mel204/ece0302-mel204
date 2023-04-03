@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
     // check size are the same
     if( (input1.width() != input2.width()) ||
-	(input1.height() != input2.height()) ){
+	      (input1.height() != input2.height()) ){
       std::cout << "Images differ\n";
       return EXIT_FAILURE;
     }
@@ -29,10 +29,10 @@ int main(int argc, char *argv[]) {
     bool ok = true;
     for (intmax_t i = 0; i < input1.width(); ++i)
       for (intmax_t j = 0; j < input1.height(); ++j) {
-	if( input1(i,j) != input2(i,j) ){
-	  ok = false;
-	  break;
-	}
+      	if( input1(i,j) != input2(i,j) ){
+	         ok = false;
+	        break;
+	      }
       }
 
     if(!ok){

@@ -54,7 +54,6 @@ std::size_t SortedLinkedList<T>::getLength() const noexcept
 template <typename T>
 void SortedLinkedList<T>::insert(const T& item)
 {
-  // TODO  
   // bool to check if inserted
   bool success = false;
   int i = 0;
