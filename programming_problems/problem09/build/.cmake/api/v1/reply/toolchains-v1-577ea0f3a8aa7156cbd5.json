@@ -28,7 +28,7 @@
 						"c++"
 					]
 				},
-				"path" : "/usr/bin/clang++",
+				"path" : "/Library/Developer/CommandLineTools/usr/bin/c++",
 				"version" : "14.0.0.14000029"
 			},
 			"language" : "CXX",

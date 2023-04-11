@@ -4,7 +4,7 @@
 #include "list.hpp"
 #include "queue.hpp"
 
-typedef struct Coordinates
+struct Coordinates
 {
   int rows = 0;
   int cols = 0;
@@ -23,10 +23,13 @@ int main(int argc, char *argv[])
   std::string input_file = argv[1];
   std::string output_file = argv[2];
 
+  
+
   try
   {
-    // Read input image from file
+    //read image from file
     Image<Pixel> image = readFromFile(input_file);
+    //make copy of image
     Image<Pixel> imCopy = image;
     
 
@@ -41,11 +44,11 @@ int main(int argc, char *argv[])
     {
       for (int j = 0; j < image.height(); j++)
       {
-        if(image(j, i) == RED)
+        if(image(i, j) == RED)
         {
           validStart += 1;
-          start.rows = j;
-          start.cols = i;
+          start.rows = i;
+          start.cols = j;
         }
       }
     }
@@ -68,73 +71,42 @@ int main(int argc, char *argv[])
     Coordinates surCoordinates;
     //enqueue starting position
     frontier.enqueue(curCoordinates);
+
     //check if starting point is goal state
-    if (curCoordinates.rows == ((image.height() - 1)||0) || curCoordinates.cols == ((image.width() - 1)||0))
+    if (curCoordinates.rows == (image.height() - 1) || curCoordinates.rows == 0  
+        || curCoordinates.cols == (image.width() - 1) || curCoordinates.cols == 0)
     {
-      imCopy(curCoordinates.rows, curCoordinates.cols) = BLUE;
-      searching = false;
+      image(curCoordinates.rows, curCoordinates.cols) = GREEN;
+      // Write solution image to file
+      writeToFile(image, output_file);
+      return EXIT_SUCCESS;
     }
 
-
-
-
+    //begin while loop
     while(searching)
     {
+      //check for solution
+
+      if (curCoordinates.rows == (image.height() - 1) || curCoordinates.rows == 0  
+         || curCoordinates.cols == (image.width() - 1) || curCoordinates.cols == 0)
+      {
+        //set image solution to green
+        image(curCoordinates.rows, curCoordinates.cols) = GREEN;
+        // Write solution image to file
+        writeToFile(image, output_file);
+        return EXIT_SUCCESS;        
+      }
 
       //if frontier is empty then there is no solution
       if (frontier.isEmpty())
       {
-        searching = false;
+        return EXIT_SUCCESS;
       }
 
       //get next state
-      //frontier.dequeue();
+      frontier.dequeue();
 
-      //check left
-      surCoordinates.cols = curCoordinates.cols - 1;
-      surCoordinates.rows = curCoordinates.rows;
-      if (imCopy(surCoordinates.rows, surCoordinates.cols) == WHITE)
-      {
-        frontier.enqueue(surCoordinates);
-        imCopy(surCoordinates.rows, surCoordinates.cols) = BLUE;
-        //move current coordinates
-        curCoordinates = surCoordinates;
-
-        if (surCoordinates.rows == ((image.height() - 1)||0) || surCoordinates.cols == ((image.width() - 1)||0))
-          searching = false;
-      }  
-
-
-      //check right
-      surCoordinates.cols = curCoordinates.cols + 1;
-      surCoordinates.rows = curCoordinates.rows;
-      if (imCopy(surCoordinates.rows, surCoordinates.cols) == WHITE)
-      {
-        frontier.enqueue(surCoordinates);
-        imCopy(surCoordinates.rows, surCoordinates.cols) = BLUE;
-        //move current coordinates
-        curCoordinates = surCoordinates;
-
-        if (surCoordinates.rows == ((image.height() - 1)||0) || surCoordinates.cols == ((image.width() - 1)||0))
-          searching = false;
-      } 
-  
-
-      //check down
-      surCoordinates.rows = curCoordinates.rows + 1;
-      surCoordinates.cols = curCoordinates.cols;
-      if (imCopy(surCoordinates.rows, surCoordinates.cols) == WHITE)
-      {
-        frontier.enqueue(surCoordinates);
-        imCopy(surCoordinates.rows, surCoordinates.cols) = BLUE;
-        //move current coordinates
-        curCoordinates = surCoordinates;
-
-        if (surCoordinates.rows == ((image.height() - 1)||0) || surCoordinates.cols == ((image.width() - 1)||0))
-          searching = false;
-      } 
-      
-      //check up
+      //previous row
       surCoordinates.rows = curCoordinates.rows - 1;
       surCoordinates.cols = curCoordinates.cols;
       if (imCopy(surCoordinates.rows, surCoordinates.cols) == WHITE)
@@ -143,36 +115,47 @@ int main(int argc, char *argv[])
         imCopy(surCoordinates.rows, surCoordinates.cols) = BLUE;
         //move current coordinates
         curCoordinates = surCoordinates;
+      }
 
-        if (surCoordinates.rows == ((image.height() - 1)||0) || surCoordinates.cols == ((image.width() - 1)||0))
-          searching = false;
+      //next row
+      surCoordinates.rows = curCoordinates.rows + 1;
+      surCoordinates.cols = curCoordinates.cols;
+      if (imCopy(surCoordinates.rows, surCoordinates.cols) == WHITE)
+      {
+        frontier.enqueue(surCoordinates);
+        imCopy(surCoordinates.rows, surCoordinates.cols) = BLUE;
+        //move current coordinates
+        curCoordinates = surCoordinates;   
       } 
 
-      searching = false;
-
-    }
-
-    //change solution path to green
-    for (int i = 0; i < imCopy.width(); i++)
-    {
-      for (int j = 0; j < imCopy.height(); j++)
+      //previous column
+      surCoordinates.cols = curCoordinates.cols - 1;
+      surCoordinates.rows = curCoordinates.rows;
+      if (imCopy(surCoordinates.rows, surCoordinates.cols) == WHITE)
       {
-        if(imCopy(j, i) == BLUE)
-        {
-          image(j, i) = GREEN;
-        }
-      }
-    }
-      
+        frontier.enqueue(surCoordinates);
+        imCopy(surCoordinates.rows, surCoordinates.cols) = BLUE;
+        //move current coordinates
+        curCoordinates = surCoordinates;
+      }  
 
-    // Write solution image to file
 
-    writeToFile(image, output_file);
-
+      //next column
+      surCoordinates.cols = curCoordinates.cols + 1;
+      surCoordinates.rows = curCoordinates.rows;
+      if (imCopy(surCoordinates.rows, surCoordinates.cols) == WHITE)
+      {
+        frontier.enqueue(surCoordinates);
+        imCopy(surCoordinates.rows, surCoordinates.cols) = BLUE;
+        //move current coordinates
+        curCoordinates = surCoordinates;  
+      } 
+    } 
   }
   catch(const std::exception& e)
   {
     std::cerr << e.what() << '\n';
+    return EXIT_FAILURE;
   }
   
   return EXIT_SUCCESS;

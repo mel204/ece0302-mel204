@@ -7,7 +7,7 @@ State<T> frontier_queue<T>::pop() {
 
   //TODO
   
-  //implement this the same way we implemented pop in the heap lecture. Compare using getFCost
+  // implement this the same way we implemented pop in the heap lecture. Compare using getFCost
 
   // needs return statement
 
@@ -26,8 +26,7 @@ template <typename T>
 bool frontier_queue<T>::empty() {
 
   //TODO
-
-  return true;
+  return queue.size() == 0;
 }
 
 template <typename T> 
